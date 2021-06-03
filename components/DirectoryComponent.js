@@ -13,7 +13,7 @@ const mapStateToProps = state => {
     };
 };
 
-class Directory extends React.Component{
+class Directory extends Component{
  
     static navigationOptions = {
         title: 'Directory'

@@ -26,6 +26,7 @@ function RenderCampsite(props) {
     const view = React.createRef();
 
     const recognizeDrag = ({dx}) => (dx < -200) ? true : false;
+    const recognizeComment = ({dx}) =>(dx > 200)? true: false;
 
       const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
@@ -53,6 +54,9 @@ function RenderCampsite(props) {
                     ],
                     { cancelable: false }
                 );
+            }
+            if (recognizeComment(gestureState)) {
+                props.onShowModal()
             }
             return true;
         }
@@ -102,7 +106,8 @@ function RenderComments({comments}) {
 
     const renderCommentItem = ({item}) => {
         return (
-            <View style={{margin: 10}}>
+            <View style={{margin: 10}}
+            >
                 <Text style={{fontSize: 14}}>{item.text}</Text>
                 <Rating 
                     style={{fontSize: 12, alignItems: "flex-start", paddingVertical:" 5%" }}
